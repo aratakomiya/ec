@@ -6,6 +6,7 @@ $dbname = 'practice';
 $err_msg=[];
 $user_data=[];
 $data=[];
+// DB接続
 $link=mysqli_connect($host,$user,$passwd,$dbname);
 if($link === FALSE){
    print 'DB接続失敗';
@@ -13,7 +14,7 @@ if($link === FALSE){
 }
 
 mysqli_set_charset($link,'utf8');
-
+// ユーザー登録処理
 if (isset($_POST["sign_up"])) {
     
     if (empty($_POST["user_name"])) { 
@@ -36,6 +37,7 @@ $password='';
  if (preg_match('/\A[a-z\d]{6,100}+\z/i', $password) === 0) {
         $err_msg[] = '半角英数字かつ文字数は6文字以上で入力してください。';
        }
+// 名前の重なりチェック
  if(count($err_msg)===0){
         $sql='SELECT * FROM ec_user_table';
         
@@ -55,7 +57,7 @@ $password='';
              }
              mysqli_free_result($result);
     }
-
+// 　ユーザー追加
  if(count($err_msg)===0){
      $created_at=date('Y-m-d H:i:s');
      $update_at=date('Y-m-d H:i:s');

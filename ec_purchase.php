@@ -7,9 +7,10 @@ $switch=0;
 $sum=0;
 $img_dir='./img/';
 $err_msg=[];
+// DB接続
 $link=mysqli_connect($host,$user,$passwd,$dbname);
 mysqli_set_charset($link,'utf8');
-
+// ログイン処理
 session_start();
 if (isset($_SESSION['id']) === TRUE) {
     
@@ -21,7 +22,7 @@ if (isset($_SESSION['id']) === TRUE) {
    header('Location: ec_top_login.php');
    exit;
 }
-
+// データを取得
 if(isset($_POST['purchase'])===TRUE){
     $sql='SELECT' . PHP_EOL
              . 'ec_info_table.id, ' . PHP_EOL

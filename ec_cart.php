@@ -16,9 +16,10 @@ $stock=0;
 $status=1;
 $switch=0;
 $sum=0;
+// DB接続
 $link=mysqli_connect($host,$user,$passwd,$dbname);
 mysqli_set_charset($link,'utf8');
-
+// ログイン処理
 session_start();
 if (isset($_SESSION['id']) === TRUE) {
     
@@ -31,7 +32,7 @@ if (isset($_SESSION['id']) === TRUE) {
    exit;
 }
 
-
+// カート処理
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $mode=get_post_data('mode');
     if($mode==='create'){
@@ -42,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
            
         
       if(count($err_msg)===0){
-          // user_idとitems_idに一致するカート商品がないかチェックする
+          // user_idとitems_idにどちらも一致するカート商品がないかチェックする
            $sql="SELECT * FROM ec_cart_table WHERE user_id =$id AND item_id = $item_id";
         
          if ($result = mysqli_query($link, $sql)) {
@@ -80,49 +81,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
          }
 
 
-        //  if ($result = mysqli_query($link, $sql)) {
-        //       $i = 0;
-        //       while ($row = mysqli_fetch_assoc($result)) {
-        //           $data[$i]['user_id'] = htmlspecialchars($row['user_id'], ENT_QUOTES, 'UTF-8');
-        //           $data[$i]['item_id'] = htmlspecialchars($row['item_id'], ENT_QUOTES, 'UTF-8');
-                   
-        //           if($data[$i]['user_id'] == $id && $data[$i]['item_id'] == $item_id){
-        //                   $switch=1;
-                         
-        //         }
-        //         $i++;
-        //       }
-        //      } 
-          // あれば数量を＋１する
-        //   if($switch===1){
-        //       $update_at=date('Y-m-d H:i:s');
-        //       $sql="UPDATE ec_cart_table SET amount = amount +1, updated_date= '$update_at' WHERE item_id = $item_id AND user_id = $id ";
-        //       if(mysqli_query($link,$sql)!==TRUE){
-        //          $err_msg[] = 'ec_cart_table: UPDATEエラー:' . $sql;
-           
-        //     }
-        //   }else{
-        //       // なければ新規レコードを追加する
-        //       $created_at=date('Y-m-d H:i:s');
-        //       $update_at=date('Y-m-d H:i:s');
-              
-        //       $cart_data=[
-        //         'user_id'=>$id,
-        //         'item_id'=>$item_id,
-        //         'amount'=>1,
-        //         'created_date'=>$created_at,
-        //         'updated_date'=>$update_at
-        //           ];
-            
-        //       $sql='INSERT INTO ec_cart_table (user_id, item_id, amount, created_date,updated_date) VALUES(\'' . implode('\',\'', $cart_data) . '\')';
-        //       if(mysqli_query($link,$sql)!==TRUE){
-        //              $err_msg[] = 'ec_table: UPDATEエラー:' . $sql;
-               
-        //         }
-        //   }
+        
          
       }
-     
+    //  数量変更
     }else if($mode==='amount_add'){
               $item_id = get_post_data('item_id');
               if(preg_match("/^[0-9]+$/", $item_id) !== 1){
@@ -142,6 +104,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                    print '変更完了';
                }
               }
+    // 削除処理
     }else if($mode==='delete_add'){
               $item_id = get_post_data('item_id');
               if(preg_match("/^[0-9]+$/", $item_id) !== 1){
@@ -159,6 +122,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 
 }
+// 表示処理
  if($link!==FALSE){
     $sql='SELECT' . PHP_EOL
              . 'ec_info_table.id, ' . PHP_EOL

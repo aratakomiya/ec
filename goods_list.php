@@ -17,10 +17,10 @@ if (isset($_SESSION['id']) === TRUE) {
    exit;
 }
 
-
+// DB接続
 $link=mysqli_connect($host,$user,$passwd,$dbname);
 mysqli_set_charset($link,'utf8');
-    
+    // 表示処理
      if($link!==FALSE){
     $sql='SELECT' . PHP_EOL
              . 'ec_info_table.id, ' . PHP_EOL

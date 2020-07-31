@@ -1,10 +1,5 @@
 <?php
-/*
-*  ログイン処理
-*
-*  セッションの仕組み理解を優先しているため、一部処理はModelへ分離していません
-*  また処理はセッション関連の最低限のみ行っており、本来必要な処理も省略しています
-*/
+
 require_once '../../include/conf/const.php';
 require_once '../../include/model/function.php';
 // リクエストメソッド確認
@@ -16,8 +11,8 @@ if (get_request_method() !== 'POST') {
 // セッション開始
 session_start();
 // POST値取得
-$user_name  = get_post_data('user_name');  // メールアドレス
-$password = get_post_data('password'); // パスワード
+$user_name  = get_post_data('user_name'); 
+$password = get_post_data('password'); 
 // メールアドレスをCookieへ保存
 setcookie('user_name', $user_name, time() + 60 * 60 * 24 * 365);
 // データベース接続

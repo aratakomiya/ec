@@ -5,6 +5,7 @@ $passwd = 'root';
 $dbname = 'practice';
 $user_data=[];
 $err_msg=[];
+// ログイン処理
 session_start();
 if (isset($_SESSION['id']) === TRUE) {
     if ($_SESSION['user_name'] !== 'admin') {
@@ -20,7 +21,7 @@ if (isset($_SESSION['id']) === TRUE) {
    exit;
 }
 
-
+// DB接続
 $link=mysqli_connect($host,$user,$passwd,$dbname);
 if($link === FALSE){
    print 'DB接続失敗';
@@ -30,7 +31,7 @@ if($link === FALSE){
 mysqli_set_charset($link,'utf8');
 
 
- // 商品の変更
+ // ユーザーの表示処理
  if($link!==FALSE){
     $sql='SELECT id, user_name, created_date FROM ec_user_table ' ;
              

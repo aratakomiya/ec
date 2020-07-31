@@ -12,7 +12,7 @@ $picture='';
 $img_dir='./img/';
 $err_msg=[];
 $messages=[];
-
+// ログイン処理
 session_start();
 if (isset($_SESSION['id']) === TRUE) {
     if ($_SESSION['user_name'] !== 'admin') {
@@ -27,7 +27,7 @@ if (isset($_SESSION['id']) === TRUE) {
    header('Location: ec_top_login.php');
    exit;
 }
-
+// DB接続
 $link=mysqli_connect($host,$user,$passwd,$dbname);
 if($link === FALSE){
    print 'DB接続失敗';
@@ -35,6 +35,7 @@ if($link === FALSE){
 }
 
 mysqli_set_charset($link,'utf8');
+// モード仕分け
 $mode = '';
 if (isset($_POST['mode']) === TRUE) {
     $mode = $_POST['mode'];
@@ -43,7 +44,7 @@ $drink_id=0;
 if (isset($_POST['drink_id']) === TRUE) {
     $drink_id = $_POST['drink_id'];
 }
-
+// 商品追加処理
 if ($mode === 'add') {
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -78,7 +79,7 @@ if ($mode === 'add') {
      if (mb_strlen($stock) === 0) {
        $err_msg[]='在庫を入力方法を間違えているもしくは入力していない';
     }
-
+// 　　　　　画像処理
         if (count($err_msg) === 0) {
             //  HTTP POST でファイルがアップロードされたか確認
             if (is_uploaded_file($_FILES['up_file']['tmp_name']) === TRUE) {
@@ -156,6 +157,7 @@ if ($mode === 'add') {
             }
     }  
     }  
+    // 在庫処理
 }else if($mode === 'stock_add'){
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //   $stock = filter_input(INPUT_POST,'change_stock',FILTER_VALIDATE_REGEXP,["options"=>["regexp"=>"/^[0-9]+$/"]]);
@@ -182,7 +184,7 @@ if ($mode === 'add') {
        }
        }
     }
-    
+    // ステータス処理
 }else if($mode === 'selection_add'){
     if(isset($_POST['change_selection'])===TRUE){
         $selection=$_POST['change_selection'];
@@ -221,7 +223,7 @@ if ($mode === 'add') {
         }
     }
 }
- // 商品の変更
+ // 商品取得処理
  if($link!==FALSE){
     $sql_flag='SELECT' . PHP_EOL
              . 'ec_info_table.id, ' . PHP_EOL
