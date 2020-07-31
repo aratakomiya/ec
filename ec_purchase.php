@@ -1,8 +1,8 @@
 <?php
-$host   = 'localhost'; 
-$user   = 'codecamp36329';  
-$passwd = 'codecamp36329';   
-$dbname = 'codecamp36329';
+$host   = 'mysql'; 
+$user   = 'root';  
+$passwd = 'root';   
+$dbname = 'practice';
 $switch=0;
 $sum=0;
 $img_dir='./img/';
@@ -128,7 +128,7 @@ if(isset($_POST['purchase'])===TRUE){
      <?php  foreach ($err_msg as $err){ ?>
     <li><?php print $err; ?></li>
     <?php } ?>
-  <a href="ec_logout.php">ログアウトする</a>
+  <a href="ec_logout.php"><img src="../php25/icon-rainbow/icon_038490_16.png" class="pic"></a>
   <a href="goods_list.php">商品リストへ</a>
   <table>
                <tr>

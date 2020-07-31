@@ -265,7 +265,7 @@ if ($mode === 'add') {
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>test</title>
+    <title>goods_manage</title>
     <style type="text/css">
         table,tr,th,td{
             border:solid 1px;
@@ -277,23 +277,34 @@ if ($mode === 'add') {
         .top{
             margin-left: 700px;
             margin-right: 700px;
+            
         }
+        h2{
+            margin-left: 700px;
+            margin-right: 700px;
+        }
+        .submit{
+            color:red;
+        }
+        body{
+          background-color: #EEEEEE	;
+       }
     </style>
 </head>
 <body>
+    <a href="ec_logout.php" ><img src="../php25/icon-rainbow/icon_038490_16.png" alt=""></a>
+    <a href="user_manage.php"><img src="../php25/icon-rainbow/人物アイコン.png" alt=""></a>
     <div class="top">
         <?php  foreach ($err_msg as $err){ ?>
         <li><?php print $err; ?></li>
         <?php } ?>
         <?php  foreach ($messages as $message){ ?>
         <li><?php print $message; ?></li>
-        <?php } ?>
-        <a href="ec_logout.php" ><img src="../php25/icon-rainbow/icon_038490_16.png" alt=""></a>
-        <a href="user_manage.php">ユーザーページ</a>
+        <?php } ?>        
         <h1>新規商品を追加</h1>
         <form method="POST" action="" enctype="multipart/form-data">
-        名前：<input type="text" name="name"/><br>
-        値段：<input type="text" name="price"/><br>
+        名前   ：<input type="text" name="name"/><br>
+        値段   ：<input type="text" name="price"/><br>
         在庫数：<input type="text" name="stock"/><br>
         ファイル:<input type="file" name="up_file"><br>
         　　　　　<select name="selection">
@@ -302,11 +313,11 @@ if ($mode === 'add') {
                     <option value="2">非公開</option>
                 </select>
                 <input type="hidden" name="mode" value="add">
-        <input type="submit" value="商品追加">
+        <input type="submit" value="商品追加" class="submit">
         </form>
     </div>
      <section>
-       <h1>商品情報の変更</h1>
+       <h2>商品情報の変更</h2>
        
            <table>
                <tr>

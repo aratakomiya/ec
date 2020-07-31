@@ -1,8 +1,8 @@
 <?php
-$host   = 'localhost'; 
-$user   = 'codecamp36329';  
-$passwd = 'codecamp36329';   
-$dbname = 'codecamp36329';
+$host   = 'mysql'; 
+$user   = 'root';  
+$passwd = 'root';   
+$dbname = 'practice';
 $user_data=[];
 $err_msg=[];
 session_start();
@@ -68,14 +68,24 @@ mysqli_set_charset($link,'utf8');
         table,tr,th,td{
             border:solid 1px;
         }
+        img{
+            width:25px;
+        }
+        section{
+            margin:0 630px;
+        }
+        body{
+          background-color: #EEEEEE	;
+       }
     </style>
 </head>
 <body>
-    <a href="ec_logout.php">ログアウトする</a>
+    <a href="ec_logout.php"><img src="../php25/icon-rainbow/icon_038470_16.png" alt=""></a>
+    <a href="goods_manage.php"><img src="../php25/icon-rainbow/人物アイコン.png" alt=""></a>
     <?php  foreach ($err_msg as $err){ ?>
     <li><?php print $err; ?></li>
     <?php } ?>
-    <a href="goods_manage.php">商品管理ページ</a>
+    
      <section>
        <h1>ユーザー情報</h1>
            <table>

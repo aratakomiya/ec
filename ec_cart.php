@@ -1,10 +1,10 @@
 <?php
 require_once '../../include/model/function.php';
 
-$host   = 'localhost'; 
-$user   = 'codecamp36329';  
-$passwd = 'codecamp36329';   
-$dbname = 'codecamp36329';
+$host   = 'mysql'; 
+$user   = 'root';  
+$passwd = 'root';   
+$dbname = 'practice';
 $img_dir='./img/';
 $err_msg=[];
 $price=0;
@@ -203,7 +203,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>test</title>
+    <title>cart</title>
     <style type="text/css">
         table,tr,th,td{
             border:solid 1px;
@@ -211,16 +211,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         p{
             font-size:30px;
         }
+        .pic{
+            width:25px;
+        }
     </style>
 </head>
-<body>
-　 <a href="ec_logout.php">ログアウトする</a>
+<body> 
+   <a href="ec_logout.php"><img src="../php25/icon-rainbow/icon_038490_16.png" class="pic"></a>
 　 <a href="goods_list.php">商品リストへ</a>
     <?php  foreach ($err_msg as $err){ ?>
     <li><?php print $err; ?></li>
     <?php } ?>
      <section>
-       <h1>カート</h1>
+       <h1>カートページ</h1>
        
            <table>
                <tr>

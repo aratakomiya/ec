@@ -65,7 +65,7 @@ mysqli_set_charset($link,'utf8');
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>test</title>
+    <title>goods_list</title>
     <style>
         ul {
             list-style-type: none;
@@ -86,41 +86,47 @@ mysqli_set_charset($link,'utf8');
             display: block;
             clear: both;
         }
+        .pic{
+            width:25px;
+            height:25px;
+        }
+        
     </style>
 </head>
 <body>
-  <a href="ec_logout.php">ログアウトする</a>
-  <a href="ec_cart.php">カートページへ</a>
+ <header>
+  <a href="ec_logout.php"><img src="../php25/icon-rainbow/icon_038490_16.png" class="pic"></a>
+  <a href="ec_cart.php"><img src="../php25/icon-rainbow/カートのアイコン素材.png" class="pic"></a>
   <h1>購入ページ</h1>
- 
+  </header>
      
  
      
                 
                     
+<div class="goods_list">
+    <ul class="clearfix">
+    <?php foreach ($goods_data as $goods) { ?>
+            <?php if($goods['status']==='1'){ ?>
+                <li><form method="POST" action="ec_cart.php">
+                    
+                
+                <div><img src="<?php print $img_dir .$goods['img']; ?>" ></div>
+                <div><?php print $goods['name']; ?></div>
+                <div><?php print number_format($goods['price']); ?>円</div>
+                <?php if($goods['stock']>=1){ ?>
+                <input type="hidden" name="item_id" value="<?php print $goods['id']; ?>" />
+                <input type="hidden" name="mode" value="create" />
+                <div><input type="submit" value="カートに入れる"/></div>
+                <?php }else { ?>
+                <div>売り切れ！！</div>
+                <?php } ?>
+                </form> </li>
+            <?php } ?>
+    <?php } ?>
 
-<ul class="clearfix">
-<?php foreach ($goods_data as $goods) { ?>
-         <?php if($goods['status']==='1'){ ?>
-             <li><form method="POST" action="ec_cart.php">
-                 
-             
-               <div><img src="<?php print $img_dir .$goods['img']; ?>" ></div>
-               <div><?php print $goods['name']; ?></div>
-               <div><?php print number_format($goods['price']); ?>円</div>
-               <?php if($goods['stock']>=1){ ?>
-               <input type="hidden" name="item_id" value="<?php print $goods['id']; ?>" />
-               <input type="hidden" name="mode" value="create" />
-               <div><input type="submit" value="カートに入れる"/></div>
-               <?php }else { ?>
-               <div>売り切れ！！</div>
-               <?php } ?>
-               </form> </li>
-          <?php } ?>
-<?php } ?>
-
-</ul>
-               
+    </ul>
+</div>               
            
       
  
