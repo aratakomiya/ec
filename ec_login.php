@@ -13,11 +13,11 @@ session_start();
 // POST値取得
 $user_name  = get_post_data('user_name'); 
 $password = get_post_data('password'); 
-// メールアドレスをCookieへ保存
+// ユーザー名をCookieへ保存
 setcookie('user_name', $user_name, time() + 60 * 60 * 24 * 365);
 // データベース接続
 $link = get_db_connect();
-// メールアドレスとパスワードからuser_idを取得するSQL
+// ユーザー名とパスワードからuser_idを取得するSQL
 $sql = 'SELECT id FROM ec_user_table
        WHERE user_name =\'' . $user_name . '\' AND password =\'' . $password . '\'';
        

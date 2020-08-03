@@ -20,7 +20,7 @@ if (isset($_SESSION['login_err_flag']) === TRUE) {
    // セッション変数が存在しなければエラーフラグはFALSE
    $login_err_flag = FALSE;
 }
-// Cookie情報からメールアドレスを取得
+// Cookie情報からユーザー名を取得
 if (isset($_COOKIE['user_name']) === TRUE) {
    $user_name = $_COOKIE['user_name'];
 } else {

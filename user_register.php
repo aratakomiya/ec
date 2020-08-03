@@ -72,7 +72,7 @@ $password='';
         
     $sql='INSERT INTO ec_user_table (user_name, password,created_date,updated_date) VALUES(\'' . implode('\',\'', $data) . '\')';
     if(mysqli_query($link,$sql)!==TRUE){
-                 $err_msg[] = 'point_customer_table: UPDATEエラー:' . $sql;
+                 $err_msg[] = 'ec_customer_table: UPDATEエラー:' . $sql;
            
             }else{
                 print "登録完了"; 
