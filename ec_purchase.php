@@ -57,10 +57,7 @@ if(isset($_POST['purchase'])===TRUE){
      } else {
        $err_msg[] = 'SQL失敗:' . $sql;
      }
-    //  $i=0;
-    //  while($i < count($i)){
-         
-    //  }
+    
      mysqli_free_result($result);
 
     // エラーチェックループ
